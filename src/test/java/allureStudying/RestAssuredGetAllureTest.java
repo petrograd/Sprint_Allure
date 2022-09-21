@@ -1,5 +1,6 @@
 package allureStudying;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Before;
@@ -18,6 +19,7 @@ public class RestAssuredGetAllureTest {
     }
 
     @Test
+    @DisplayName("Check status code of /users/me") // имя теста
     public void getMyInfoStatusCode() {
         given()
                 .auth().oauth2(bearerToken)
@@ -26,6 +28,7 @@ public class RestAssuredGetAllureTest {
     }
 
     @Test
+    @DisplayName("Check user name") // имя теста
     public void checkUserName() {
         given()
                 .auth().oauth2(bearerToken)
@@ -34,6 +37,7 @@ public class RestAssuredGetAllureTest {
     }
 
     @Test
+    @DisplayName("Check user name and print response body") // имя теста
     public void checkUserNameAndPrintResponseBody() {
 
         Response response =given().auth().oauth2(bearerToken).get("/api/users/me");
@@ -42,7 +46,7 @@ public class RestAssuredGetAllureTest {
         response.then().assertThat().body("data.name",equalTo("Игорь Иванович"));
         // проверили, что в теле ответа ключу name соответствует нужное имя пользователя
 
-        System.out.println(response.body().asString()); // вывели тело ответа на экран
+      //  System.out.println(response.body().asString()); // вывели тело ответа на экран
 
     }
 

@@ -25,12 +25,12 @@ public class CourierCopyTest {
     public void teardown() {
         courierClient.delete(courierId);
     }
-    
+
     @Test
     public void courierTest() {
         boolean isOk = courierClient.create(courier)
                 .extract().path("ok");
-        
+
         CourierCredentials creds = CourierCredentials.from(courier);
         courierId = courierClient.login(creds)
                 .extract().path("id");
